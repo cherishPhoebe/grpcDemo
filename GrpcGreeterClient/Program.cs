@@ -22,7 +22,31 @@ var reply = await client.SayHelloUnaryAsync(new HelloRequest { Name = "GreeterCl
 //    // "Greeting: Hello World" is written multiple times
 //}
 
+
+Console.WriteLine(Func(0));
+Console.WriteLine(Func(1));
+
 Console.WriteLine("Greeting: " + reply.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 
+
+
+static int Func(int input) {
+    int k = input;
+	try
+	{
+		k = 10 / k;
+		return k;
+	}
+	catch (Exception)
+	{
+		++k;
+		return k;
+	}
+	finally
+	{
+		k++;
+		Console.WriteLine($"f -{k}");
+	}
+}

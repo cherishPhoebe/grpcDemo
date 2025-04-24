@@ -1,0 +1,6 @@
+@GrpcGreeterWebClient_HostAddress = http://localhost:5178
+
+GET {{GrpcGreeterWebClient_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

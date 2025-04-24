@@ -30,27 +30,27 @@ public class GreeterService : Greeter.GreeterBase
         }
     }
 
-    //public override async Task<HelloReply> SayHelloClientStreaming(IAsyncStreamReader<HelloRequest> requestStream, ServerCallContext context)
-    //{
-    //    var names = new List<string>();
+    public override async Task<HelloReply> SayHelloClientStreaming(IAsyncStreamReader<HelloRequest> requestStream, ServerCallContext context)
+    {
+        var names = new List<string>();
 
-    //    await foreach (var request in requestStream.ReadAllAsync())
-    //    {
-    //        names.Add(request.Name);
-    //    }
+        await foreach (var request in requestStream.ReadAllAsync())
+        {
+            names.Add(request.Name);
+        }
 
-    //    var message = string.Join(", ", names);
-    //    return new HelloReply { Message = message };
-    //}
+        var message = string.Join(", ", names);
+        return new HelloReply { Message = message };
+    }
 
-    //public override async Task SayHelloBidirectionalStreaming(IAsyncStreamReader<HelloRequest> requestStream, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
-    //{
-    //    await foreach (var request in requestStream.ReadAllAsync())
-    //    {
-    //        await responseStream.WriteAsync(
-    //            new HelloReply { Message = $"Hello {request.Name}" });
-    //    }
-    //}
+    public override async Task SayHelloBidirectionalStreaming(IAsyncStreamReader<HelloRequest> requestStream, IServerStreamWriter<HelloReply> responseStream, ServerCallContext context)
+    {
+        await foreach (var request in requestStream.ReadAllAsync())
+        {
+            await responseStream.WriteAsync(
+                new HelloReply { Message = $"Hello {request.Name}" });
+        }
+    }
 
 
 }
